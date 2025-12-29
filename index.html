@@ -9,32 +9,71 @@
       margin: 0;
       padding: 0;
       font-family: 'Arial', 'Helvetica', sans-serif;
-      background-color: #f0f8ff;
-      color: #333;
+      background-color: #0d1b2a; /* Тёмно-синий фон */
+      color: #e0e7ff;
+      min-height: 100vh;
+      position: relative;
     }
+
+    /* Снежинки */
+    .snowflakes {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      pointer-events: none; /* Не мешают кликам */
+      z-index: 1;
+      overflow: hidden; /* Теперь скрываем только снежинки за пределами экрана */
+    }
+
+    .snowflake {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: fall linear infinite;
+      box-shadow: 0 0 5px rgba(255,255,255,0.8);
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(100vh);
+      }
+    }
+
     .container {
       max-width: 600px;
       margin: 40px auto;
-      background-color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.95);
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+      position: relative;
+      z-index: 2; /* Письмо поверх снежинок */
     }
+
     .header {
       background: linear-gradient(135deg, #1e90ff, #00bfff);
       padding: 40px 30px;
       text-align: center;
       color: white;
     }
+
     .header h1 {
       margin: 0;
       font-size: 2.8em;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
       letter-spacing: 1px;
     }
+
     .content {
       padding: 40px 50px;
+      color: #333;
     }
+
     .greeting {
       font-size: 1.6em;
       color: #c41e3a;
@@ -43,12 +82,13 @@
       border-bottom: 2px solid #ffd700;
       padding-bottom: 10px;
     }
+
     .main-text {
       font-size: 1.15em;
       line-height: 1.7;
-      color: #333;
       margin-bottom: 40px;
     }
+
     .wishes-title {
       font-size: 1.8em;
       color: #006400;
@@ -56,16 +96,19 @@
       text-align: center;
       position: relative;
     }
+
     .wishes-title::after {
       content: "✨";
       font-size: 1.2em;
       margin-left: 10px;
     }
+
     .wishes-list {
       list-style: none;
       padding: 0;
       margin: 0;
     }
+
     .wishes-list li {
       background-color: #fffaf0;
       margin: 12px 0;
@@ -75,6 +118,7 @@
       box-shadow: 0 3px 10px rgba(0,0,0,0.08);
       border-left: 5px solid #ffd700;
     }
+
     .gift {
       text-align: center;
       margin-top: 50px;
@@ -86,6 +130,7 @@
       border-radius: 15px;
       border: 3px dashed #ff69b4;
     }
+
     .signature {
       text-align: right;
       margin-top: 60px;
@@ -96,7 +141,24 @@
   </style>
 </head>
 <body>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: #f0f8ff; padding: 20px;">
+  <!-- Слой со снежинками -->
+  <div class="snowflakes" aria-hidden="true">
+    <div class="snowflake" style="left:10%; animation-delay:0s; animation-duration:12s;"></div>
+    <div class="snowflake" style="left:20%; animation-delay:2s; animation-duration:15s; width:8px; height:8px;"></div>
+    <div class="snowflake" style="left:30%; animation-delay:4s; animation-duration:18s;"></div>
+    <div class="snowflake" style="left:40%; animation-delay:1s; animation-duration:10s; width:12px; height:12px;"></div>
+    <div class="snowflake" style="left:50%; animation-delay:6s; animation-duration:14s;"></div>
+    <div class="snowflake" style="left:60%; animation-delay:3s; animation-duration:16s;"></div>
+    <div class="snowflake" style="left:70%; animation-delay:8s; animation-duration:13s; width:9px; height:9px;"></div>
+    <div class="snowflake" style="left:80%; animation-delay:5s; animation-duration:17s;"></div>
+    <div class="snowflake" style="left:90%; animation-delay:7s; animation-duration:11s;"></div>
+    <div class="snowflake" style="left:15%; animation-delay:9s; animation-duration:19s; width:11px; height:11px;"></div>
+    <div class="snowflake" style="left:25%; animation-delay:11s; animation-duration:12s;"></div>
+    <div class="snowflake" style="left:35%; animation-delay:13s; animation-duration:15s;"></div>
+  </div>
+
+  <!-- Само письмо -->
+  <table width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color: transparent; padding: 20px; position: relative; z-index: 2;">
     <tr>
       <td align="center">
         <table class="container" cellpadding="0" cellspacing="0" border="0">
@@ -110,8 +172,8 @@
               <div class="greeting">Дорогой Дедушка Мороз!</div>
               
               <div class="main-text">
-                В этом году было много всего интересного. <br><br>
-                Много чему научился, много новых знакомств и ситуаций, в которых я вырос и взял для себя что-то новое. <br><br>
+                В этом году было много всего интересного.<br><br>
+                Много чему научился, много новых знакомств и ситуаций, в которых я вырос и взял для себя что-то новое.<br><br>
                 Хочу сказать, что самое главное — это брать ответственность за свои поступки, не останавливаться на достигнутом, а всегда развиваться, быть искренним и отзывчивым и радоваться жизни.
               </div>
 
@@ -126,7 +188,7 @@
 
               <div class="gift">
                 А от тебя, Дедушка Мороз, хотелось бы получить…<br>
-                <span style="font-size: 1.5em; color: #006400;">Клавиатуру! 🎹⌨️</span>
+                <span style="font-size: 1.5em; color: #006400;">Клавиатуру! ⌨️</span>
               </div>
 
               <div class="signature">
